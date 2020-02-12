@@ -1,5 +1,5 @@
 package com.countries;
 
 public interface CheckCountry {
-    boolean test(Country e);
+    boolean test(Country c);
 }

@@ -210,15 +210,33 @@ public class CountryList {
         countryList.add(new Country("Seychelles",95702,460,36));
     }
 
-    public ArrayList<Country> findCountry(CheckCountry tester) {
+    // filter methods
 
-        ArrayList<Country> filterCountry = new ArrayList<>();
+    public ArrayList<Country> findCountries(CheckCountry tester)
+    {
+        ArrayList<Country> tempArray = new ArrayList<>();
 
-        for (Country e: countryList) {
-            if(tester.test(e)) {
-                filterCountry.add(e);
+        for (Country c : countryList)
+        {
+            if (tester.test(c))
+            {
+                tempArray.add(c);
             }
         }
-        return filterCountry;
+
+        return tempArray;
     }
+
+    public Country findCountry(CheckCountry tester)
+    {
+        for (Country c : countryList)
+        {
+            if (tester.test(c))
+            {
+                return c;
+            }
+        }
+        return null;
+    }
+
 }
