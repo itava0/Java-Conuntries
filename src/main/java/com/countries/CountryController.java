@@ -117,5 +117,18 @@ public class CountryController {
     {
         return new ResponseEntity<>(CountrySearchApplication.ourCountryList.findCountries(c -> c.getMedianAge() >= age), HttpStatus.OK);
     }
+
+    //age/min
+//  return the country with the smallest median age
+    @GetMapping(value = "age/min",
+            produces = {"application/json"})
+    public ResponseEntity<?> getSmallestAge()
+    {
+        // sort countries by median age, ascending
+        CountrySearchApplication.ourCountryList.countryList.sort((c1, c2) -> (c1.getMedianAge() - c2.getMedianAge()));
+
+        return new ResponseEntity<>(CountrySearchApplication.ourCountryList.countryList.get(0), HttpStatus.OK);
+    }
+
 }
 
