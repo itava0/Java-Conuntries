@@ -92,4 +92,21 @@ public class CountryController {
 
         return new ResponseEntity<>(CountrySearchApplication.ourCountryList.countryList, HttpStatus.OK);
     }
+
+    //    Stretch Goal
+//  /population/median
+//  return the country with the median population
+    @GetMapping(value = "/population/median",
+            produces = {"application/json"})
+    public ResponseEntity<?> getMedianPopulation()
+    {
+        // sort by population, ascending
+        CountrySearchApplication.ourCountryList.countryList.sort((c1, c2) -> (int)(c1.getPopulation() - c2.getPopulation()));
+
+        // get country at middle of list
+        Country resData = CountrySearchApplication.ourCountryList.countryList.get(CountrySearchApplication.ourCountryList.countryList.size() / 2);
+
+        return new ResponseEntity<>(resData, HttpStatus.OK);
+    }
 }
+
