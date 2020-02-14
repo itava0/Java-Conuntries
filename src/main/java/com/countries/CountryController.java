@@ -108,5 +108,14 @@ public class CountryController {
 
         return new ResponseEntity<>(resData, HttpStatus.OK);
     }
+
+    //  /age/age/{age}
+//  return the countries that have a median age equal to or greater than the given age
+    @GetMapping(value = "/age/age/{age}",
+            produces = {"application/json"})
+    public ResponseEntity<?> getCountriesByMedianAge(@PathVariable int age)
+    {
+        return new ResponseEntity<>(CountrySearchApplication.ourCountryList.findCountries(c -> c.getMedianAge() >= age), HttpStatus.OK);
+    }
 }
 
